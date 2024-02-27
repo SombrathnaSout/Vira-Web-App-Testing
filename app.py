@@ -5,6 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import load_model
 import plotly.graph_objects as go
 import joblib
+import tables
 
 # Load your trained model and scaler
 model = load_model('lstm_model.h5')
