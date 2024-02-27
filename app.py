@@ -28,7 +28,7 @@ def lookback(df, window):
     return np.array(X), np.array(Y)
 
 # Streamlit UI
-st.title('Sales Forecasting using LSTM')
+st.title('Sales Forecasting Using LSTM')
 data = pd.read_hdf('final_data.h5', key = 'df')
 
 # Pre-set dates for splitting data
@@ -60,22 +60,6 @@ y_pred = model.predict(X_test)
 y_test_actual = sc.inverse_transform(y_test.reshape(-1, 1))
 y_pred_actual = sc.inverse_transform(y_pred)
 
-# ... previous code ...
-
-# Forecast future values
-def forecast_future(model, last_window, n_days):
-    future_predictions_scaled = []
-    current_batch = last_window[-window:].reshape(1, window, 1)
-
-    for i in range(n_days):
-        # Get the next prediction
-        future_pred = model.predict(current_batch)
-        future_predictions_scaled.append(future_pred[0, 0])
-        
-        # Update batch to include the next prediction and drop first value
-        current_batch = np.append(current_batch[:, 1:, :], [[future_pred[0]]], axis=1)
-
-    return np.array(future_predictions_scaled)
 
 # Number of days to forecast
 st.title("Forecast Input after test set")
